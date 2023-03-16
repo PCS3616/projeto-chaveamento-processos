@@ -6,8 +6,7 @@ Este projeto é uma introdução a Sistemas Operacionais, disciplina que é
 continuação direta de Sistemas de Programação. Para entender
 corretamente o que deve ser feito deve-se entender o que são processos
 em um computador e qual sua dinâmica num sistema real, tudo isso será
-aprofundado na disciplina "Sistemas Operacionais" em algum momento no
-futuro.
+aprofundado na disciplina "Sistemas Operacionais".
 
 ## Base de Sistemas Operacionais
 
@@ -16,19 +15,18 @@ local constante e algum tempo de vida. Num sistema real os processos são
 identificados por números únicos chamados PID (_process id_). Existem
 inúmeras funções que um processo pode executar, desde as operações
 lógico-aritméticas convencionais até a criação e destruição de outros
-processos, além, é claro do uso de dispositivos externos (tela, teclado,
+processos, além do uso de dispositivos externos (tela, teclado,
 mouse, portas USB, etc.). Para garantir um bom funcionamento de um
 sistema operacional, é definida na memória uma **área reservada**, onde
-existem as instruções internas do sistema operacional para lidar as
-diversas utilidades diferentes que este tem. A única forma de se entrar
-na área reservada é através de uma **interrupção** (deixamos este conceito
-para Sistemas Operacionais explicar pra vocês, mas a ideia geral é
-intuitiva), sendo impossível um processo de fora da área reservada
-chamar um processo de dentro dela.
+existem as instruções internas do sistema operacional para lidar com suas
+diversas utilidades. A única forma de se entrar na área reservada é através
+de uma **interrupção** (deixamos este conceito para Sistemas Operacionais
+explicar pra vocês, mas a ideia geral é intuitiva), sendo impossível
+um processo de fora da área reservada chamar um processo de dentro dela.
 
-Em um computador há um número bastante grande de processos ativos
-simultaneamente (você pode ver os processos e suas características
-usando o comando `top` na sua máquina virtual). Para gerenciar todos
+Em um computador, existem vários processos ativos simultaneamente
+(você pode ver os processos e suas características
+usando o comando `top` no Linux). Para gerenciar todos
 estes processos, já que apenas um processo pode rodar em cada núcleo do
 processador por vez, os sistemas operacionais implementam o chaveamento
 de processos: existe uma fila de processos que devem ser executados pela
@@ -43,22 +41,22 @@ de **gerenciador de interrupções** ou _interruption handler_.
 
 ## O que será fornecido
 
-Para a execução do trabalho, é necessário que hajam as interrupções de
+Para a execução do trabalho, são necessárias interrupções de
 tempo invocando as rotinas restritas da área reservada. Por isso é
 fornecido na própria MVN uma opção de funcionamento que contém uma área
-reservada para as rotinas do sistema operacional (entre `0x00` e `0xFF`)
+reservada para as rotinas do sistema operacional (entre `0x0000` e `0x00FF`)
 que segue todas as regras de acesso colocadas acima e a implementação de
 uma interrupção de tempo que, a cada `NUM` ciclos completos de execução,
-faz uma chamada de sub-rotina para o endereço `0x0000`, onde deve estar a
+faz uma chamada de sub-rotina para o endereço `0x0000`, que deve conter a
 rotina de chaveamento de processos. Para ativar esta funcionalidade,
 basta invocar o monitor da MVN com a flag `-i` seguida do tempo de
 interrupção, que, por padrão, é de 50 ciclos.
 
 ## O trabalho
 
-O trabalho consiste numa simplificação desta dinâmica de chaveamento,
-existirão apenas dois processos (chamados rotina 1 e rotina 2), além do
-Gerenciador de Interrupções.
+O trabalho consiste numa simplificação desta dinâmica de chaveamento:
+haverá apenas dois processos (chamados rotina 1 e rotina 2), além do
+gerenciador de interrupções.
 
 Devem ser codificados o gerenciador de interrupções, que faz a troca
 entre os dois processos:
@@ -98,7 +96,7 @@ Seguem algumas perguntas a serem respondidas depois da codificação:
     um número arbitrário $k$? Neste último caso, quais seriam as restrições
     de $k$?
 
-5.  O que aconteceria com a execução do seu código se NUM for alterado?
+5.  O que aconteceria com a execução do seu código se `NUM` for alterado?
     Qual valor mínimo que ele pode assumir? E o máximo?
 
 ## Entrega
